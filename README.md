@@ -14,7 +14,11 @@ Contents of dockerfile
 ```dockerfile
 FROM debian:11
 RUN apt update && apt install -y wget cron && rm -rf /var/lib/apt/lists/*
-RUN bash <(wget -O - https://raw.githubusercontent.com/Athlon1600/php-proxy-installer/master/install.sh)
+RUN mkdir -p /scripts
+WORKDIR /scripts
+RUN wget https://raw.githubusercontent.com/Athlon1600/php-proxy-installer/master/install.sh
+RUN chmod +x install.sh
+RUN ./install.sh
 ```
 
 ```bash
@@ -23,4 +27,9 @@ docker build -t my-php-proxy .
 
 ```bash
 docker run -d --name php-proxy-container -p 8080:80 my-php-proxy
+```
+
+Run bash from this new container.
+```bash
+docker container exec -it my-php-proxy /bin/bash
 ```
