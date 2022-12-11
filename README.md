@@ -29,7 +29,12 @@ docker build -t my-php-proxy .
 docker run -d --name php-proxy-container -p 8080:80 my-php-proxy
 ```
 
+
 Run bash from this new container.
 ```bash
 docker container exec -it my-php-proxy /bin/bash
 ```
+
+
+
+Dockerfile uses Debian 11 as base.   Download and install scriptfile for php-proxy.  Create  docker image.  Run docker file.  Enter the docker container and run a shell from it.
