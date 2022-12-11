@@ -20,21 +20,26 @@ RUN wget https://raw.githubusercontent.com/Athlon1600/php-proxy-installer/master
 RUN chmod +x install.sh
 RUN ./install.sh
 ```
+1. Dockerfile uses Debian 11 as base.
+2. Install wget (download using http) and cron (run scheduled jobs)
+3. Download and install scriptfile for php-proxy.  
+4. Create  docker image.  
 
+
+Build the docker image.
 ```bash
 docker build -t my-php-proxy .
 ```
 
+Run docker file.
 ```bash
 docker run -d --name php-proxy-container -p 8080:80 my-php-proxy
 ```
 
-
-Run bash from this new container.
+Enter the docker container and run a bash shell from it.
 ```bash
-docker container exec -it my-php-proxy /bin/bash
+docker container exec -it php-proxy-container /bin/bash
 ```
 
 
 
-Dockerfile uses Debian 11 as base.   Download and install scriptfile for php-proxy.  Create  docker image.  Run docker file.  Enter the docker container and run a shell from it.
